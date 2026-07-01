@@ -1,0 +1,8 @@
+# nix build symlinks
+result
+result-*
+
+# editor scratch
+*.swp
+*.swo
+tags

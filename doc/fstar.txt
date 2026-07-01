@@ -1,0 +1,80 @@
+*fstar.txt*  Syntax highlighting and filetype support for F*
+
+==============================================================================
+INTRODUCTION                                                         *fstar.vim*
+
+This plugin provides syntax highlighting, filetype detection, a filetype
+plugin, heuristic indentation, and opt-in folding for F* source files
+(|*.fst| and |*.fsti|), including embedded Pulse separation-logic syntax.
+
+It is highlighting only. F* has no turnkey language server for Vim, and a
+language server would not provide highlighting in any case. See the README for
+the full landscape.
+
+The reserved-keyword lists are generated from F*'s own lexer at a pinned
+commit, so highlighting tracks the exact dialect being compiled.
+
+==============================================================================
+OPTIONS                                                      *fstar-options*
+
+                                                             *g:fstar_fold*
+Fold on syntax regions (block comments are marked foldable). Off by default. >
+    let g:fstar_fold = 1
+<
+                                                    *g:fstar_indent_enabled*
+Enable the heuristic indenter. On by default; set to 0 to fall back to plain
+autoindent. >
+    let g:fstar_indent_enabled = 0
+<
+                                                  *g:fstar_sync_fromstart*
+Nested block comments require whole-file syntax synchronization to be colored
+correctly. On by default. Set to 0 to trade correctness for speed on very
+large files. >
+    let g:fstar_sync_fromstart = 0
+<
+==============================================================================
+HIGHLIGHT GROUPS                                          *fstar-highlight*
+
+The plugin defines these groups (linked to standard groups by default; relink
+them in your colorscheme to customise):
+
+    fstarKeyword        general term/expression keywords
+    fstarConditional    if then else match with when
+    fstarBoolean        true false
+    fstarInclude        module open include friend
+    fstarStructure      type effect class instance exception ...
+    fstarException      try
+    fstarStorageClass   qualifiers: noeq unfold irreducible private ...
+    fstarSpec           requires ensures decreases returns
+    fstarType           built-in types (nat int bool, machine ints, ...)
+    fstarEffect         effect labels (Tot GTot Lemma ST Pure ...)
+    fstarConstructor    upper-case identifiers (modules / constructors)
+    fstarTypeVar        type variables ('a 'b ...)
+    fstarPulseKeyword   Pulse keywords (fn mut invariant fold ...)
+    fstarPulseRepeat    while
+    fstarPulseBuiltin   Pulse vprops (emp pure pts_to)
+    fstarOperator       operator runs
+    fstarComment        (* ... *) and // comments
+    fstarDocComment     (** ... *) block doc comments
+    fstarLineDocComment /// line doc comments
+    fstarString         string literals
+    fstarChar           character literals
+    fstarNumber         integer literals
+    fstarFloat          float / real literals
+    fstarPragma         #push-options, %splice, ...
+    fstarAttribute      [@ [@@ [@@@ attribute markers
+    fstarSmtPattern     {:pattern {:well-founded
+    fstarUnsafe         proof holes: admit magic sorry
+
+==============================================================================
+MAINTENANCE                                              *fstar-maintenance*
+
+To track a newer F* release, edit the `fstar-src` input in flake.nix to the
+new commit, then: >
+    nix flake lock
+    nix run .#gen
+<
+This regenerates syntax/fstar_tokens.vim from the pinned lexer sources. Commit
+the updated flake.lock and fstar_tokens.vim together.
+
+ vim:tw=78:ts=8:ft=help:norl:

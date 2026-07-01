@@ -1,0 +1,45 @@
+{
+  "nodes": {
+    "fstar-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1776823361,
+        "narHash": "sha256-CRv9j+rloemHBH5UmTChcioysFWV6DuHnH8wku58Ftw=",
+        "owner": "FStarLang",
+        "repo": "FStar",
+        "rev": "c12e51b16de4a5b499a6dcab33d776f35ed4c5c2",
+        "type": "github"
+      },
+      "original": {
+        "owner": "FStarLang",
+        "repo": "FStar",
+        "rev": "c12e51b16de4a5b499a6dcab33d776f35ed4c5c2",
+        "type": "github"
+      }
+    },
+    "nixpkgs": {
+      "locked": {
+        "lastModified": 1782723713,
+        "narHash": "sha256-oPXCU/SSUokcGaJREHibG1CBX3+s/W7orDWQOZDsEeQ=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "b5aa0fbd538984f6e3d201be0005b4463d8b09f8",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "root": {
+      "inputs": {
+        "fstar-src": "fstar-src",
+        "nixpkgs": "nixpkgs"
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
+}
